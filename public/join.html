@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>회원가입 | GD</title>
+
+    <!-- font 링크 -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- css link -->
+    <link rel="stylesheet" href="assets/css/normalize.css" />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/common.css" />
+    <link rel="stylesheet" href="assets/css/join.css" />
+
+    <!-- js link -->
+    <script defer src="assets/js/join.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <section class="content-box">
+        <h1 class="title">Join</h1>
+        <form>
+          <label for="userId" class="a11y-hidden">아이디</label>
+          <input
+            type="text"
+            id="userId"
+            class="join-input"
+            placeholder="아이디"
+            autocomplete="off"
+          />
+          <label for="userPw" class="a11y-hidden">비밀번호</label>
+          <input
+            type="password"
+            id="userPw"
+            class="join-input"
+            placeholder="비밀번호"
+            autocomplete="off"
+          />
+          <label for="userPwConfirm" class="a11y-hidden">비밀번호 확인</label>
+          <input
+            type="password"
+            id="userPwConfirm"
+            class="join-input"
+            placeholder="비밀번호 확인"
+            autocomplete="off"
+          />
+          <label for="userName" class="a11y-hidden">이름</label>
+          <input
+            type="text"
+            id="userName"
+            class="join-input"
+            placeholder="이름"
+            autocomplete="off"
+          />
+          <div class="user-select">
+            <label for="userPosition" class="select-label">직책 </label>
+            <select id="userPosition" class="join-select">
+              <option value="student">학생</option>
+              <option value="manager">매니저</option>
+            </select>
+          </div>
+          <button class="join-btn">Join</button>
+          <p class="join-txt">
+            로그인 화면으로 돌아갈까요?
+            <a href="index.html">Log In</a>
+          </p>
+        </form>
+      </section>
+    </div>
+  </body>
+</html>

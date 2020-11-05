@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>시험보기 | GD</title>
+
+    <!-- font 링크 -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- css link -->
+    <link rel="stylesheet" href="assets/css/normalize.css" />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/common.css" />
+    <link rel="stylesheet" href="assets/css/exam.css" />
+
+    <!-- js link -->
+    <script defer src="assets/js/exam.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <section class="content-box">
+        <h1 class="title">HTML 퀴즈</h1>
+        <form>
+          <div class="question-box">
+            <div class="question-content">
+              <div class="question-line">
+                <h2 class="question-title">
+                  <span>Q-1</span>
+                  내 이름은 뭘까요?
+                </h2>
+              </div>
+              <div class="question-line">
+                <p class="question-score">
+                  <span>score</span>
+                  50점
+                </p>
+              </div>
+              <div class="question-line">
+                <label for="questionAnswer-1" class="question-label">
+                  answer
+                </label>
+                <input
+                  type="text"
+                  id="questionAnswer-1"
+                  class="question-input"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+          </div>
+          <button class="save-btn">Save</button>
+        </form>
+        <p class="solved-question"><span>1</span> / 3</p>
+      </section>
+    </div>
+  </body>
+</html>

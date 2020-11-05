@@ -1,0 +1,32 @@
+*,
+*::before,
+*:after {
+  box-sizing: border-box;
+}
+body {
+  font-size: 16px;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+h1,
+h2,
+fieldset,
+ul,
+button {
+  margin: 0;
+  padding: 0;
+}
+fieldset,
+input,
+button {
+  border: 0;
+}
+button {
+  cursor: pointer;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+ul {
+  list-style: none;
+}

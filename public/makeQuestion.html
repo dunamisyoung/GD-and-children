@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>문제 만들기 | GD</title>
+
+    <!-- font 링크 -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- css link -->
+    <link rel="stylesheet" href="assets/css/normalize.css" />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/common.css" />
+    <link rel="stylesheet" href="assets/css/makeQuestion.css" />
+
+    <!-- js link -->
+    <script defer src="assets/js/makeQuestion.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <section class="content-box">
+        <h1 class="title"><span>G</span></h1>
+        <form>
+          <div class="question-box">
+            <div class="question-content">
+              <div class="question-line">
+                <label for="questionTitle-1" class="question-label">Q-1</label>
+                <input
+                  type="text"
+                  id="questionTitle-1"
+                  class="question-input"
+                  autocomplete="off"
+                />
+              </div>
+              <div class="question-line">
+                <label for="questionScore-1" class="question-label"
+                  >score</label
+                >
+                <input
+                  type="number"
+                  id="questionScore-1"
+                  class="question-input"
+                  autocomplete="off"
+                />
+              </div>
+              <div class="question-line">
+                <label for="questionAnswer-1" class="question-label"
+                  >answer</label
+                >
+                <input
+                  type="text"
+                  id="questionAnswer-1"
+                  class="question-input"
+                  autocomplete="off"
+                />
+              </div>
+              <div class="question-line">
+                <label
+                  for="questionSolution-1"
+                  class="question-label label-textarea"
+                  >solution</label
+                >
+                <textarea
+                  id="questionSolution-1"
+                  class="question-textarea"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <button class="plus-btn">+</button>
+          <button class="save-btn">Save</button>
+        </form>
+      </section>
+    </div>
+  </body>
+</html>

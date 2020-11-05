@@ -1,0 +1,15 @@
+{
+  "name": "gd",
+  "version": "1.0.0",
+  "description": "매니저가 문제를 만들고 학생들이 문제를 풀 수 있는 어플리케이션",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "hanseul-lee, dunamisyoung, dongchan-K",
+  "license": "MIT",
+  "devDependencies": {
+    "json-server": "^0.16.2",
+    "nodemon": "^2.0.6"
+  }
+}

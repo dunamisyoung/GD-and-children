@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>로그인 | GD</title>
+
+    <!-- font 링크 -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- css link -->
+    <link rel="stylesheet" href="assets/css/normalize.css" />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/common.css" />
+    <link rel="stylesheet" href="assets/css/login.css" />
+
+    <!-- js link -->
+    <script defer src="assets/js/login.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <section class="content-box">
+        <h1 class="title"><span>G</span></h1>
+        <form>
+          <label for="userId" class="a11y-hidden">아이디</label>
+          <input
+            type="text"
+            id="userId"
+            class="login-input"
+            placeholder="아이디"
+            autocomplete="off"
+          />
+          <label for="userPw" class="a11y-hidden">비밀번호</label>
+          <input
+            type="password"
+            id="userPw"
+            class="login-input"
+            placeholder="비밀번호"
+            autocomplete="off"
+          />
+          <button class="login-btn">Log In</button>
+          <p class="join-txt">
+            회원가입이 필요하신가요?
+            <a href="join.html">Join</a>
+          </p>
+        </form>
+      </section>
+    </div>
+  </body>
+</html>

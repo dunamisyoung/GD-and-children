@@ -1,0 +1,29 @@
+.content-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.score {
+  display: block;
+  margin-bottom: 80px;
+  font-size: 9rem;
+  color: #3e7cf0;
+}
+.btn-box {
+  padding: 15px 0;
+  text-align: center;
+  border: 2px solid #3e7cf0;
+  border-radius: 5px;
+}
+.location-btn {
+  display: inline-block;
+  width: 49%;
+  font-size: 2rem;
+}
+.location-btn:first-child {
+  border-right: 2px solid #3e7cf0;
+}
+.location-btn:hover {
+  color: #3e7cf0;
+}

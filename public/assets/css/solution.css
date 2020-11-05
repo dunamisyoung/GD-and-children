@@ -1,0 +1,41 @@
+.wrapper {
+  padding: 30px 0;
+}
+.content-box {
+  margin: 0 auto;
+  width: 1000px;
+}
+.title {
+  padding: 20px 0 50px;
+  text-align: center;
+  font-size: 4rem;
+  color: #3e7cf0;
+}
+.question-content {
+  margin-bottom: 70px;
+  padding: 20px;
+  border-left: 2px solid #3e7cf0;
+}
+.question-line {
+  margin: 20px 0;
+}
+.question-title,
+.question-score,
+.question-answer,
+.question-solution {
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+.question-title > span,
+.question-score > span,
+.question-answer > span,
+.question-solution > span {
+  display: inline-block;
+  width: 100px;
+}
+.save-btn {
+  padding: 10px 20px;
+  background-color: #3e7cf0;
+  font-size: 1.5rem;
+  color: #fff;
+}
