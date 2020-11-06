@@ -23,6 +23,7 @@ const get = (url) => {
     };
   });
 };
+// console.log()
 
 get(`/question/${joinCode}`).then((question) => {
   $title.textContent = question.title;
