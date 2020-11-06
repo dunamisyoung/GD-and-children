@@ -8,6 +8,7 @@ const $saveBtn = document.querySelector('.save-btn');
 let $titleInput = document.querySelector('.title-input');
 let $questionInputs = document.querySelectorAll('.question-input');
 let $questionTextareas = document.querySelectorAll('.question-textarea');
+let $questionScores = document.querySelectorAll('.question-score');
 
 
 const get = url => {
@@ -77,7 +78,7 @@ const makeCode = () => {
       <input
         type="number"
         id="questionScore-${num}"
-        class="question-input"
+        class="question-input question-score"
         autocomplete="off"
       />
     </div>
@@ -109,6 +110,7 @@ const makeCode = () => {
   $questionInputs = document.querySelectorAll('.question-input');
   $questionTextareas = document.querySelectorAll('.question-textarea');
   $questionContents = document.querySelectorAll('.question-content');
+  $questionScores = document.querySelectorAll('.question-score');
   num++;
 }
 
@@ -161,20 +163,33 @@ $saveBtn.onclick = e => {
       const $questionScore = document.getElementById(`questionScore-${i + 1}`);
       const $questionAnswer = document.getElementById(`questionAnswer-${i + 1}`);
       const $questionSolution = document.getElementById(`questionSolution-${i + 1}`);
-
       
       newQuiz[`Q${i + 1}`].id = i + 1;
       newQuiz[`Q${i + 1}`].question = $questionTitle.value;
       newQuiz[`Q${i + 1}`].answer = $questionAnswer.value;
       newQuiz[`Q${i + 1}`].score = $questionScore.value;
       newQuiz[`Q${i + 1}`].solution = $questionSolution.value;
+      
     });
 
-    alert('새로운 문제가 생성되었습니다!');
+    
 
     post('/question', newQuiz)
     .then(() =>{
-      location.assign('/solution.html');
+
+      // 점수 계산
+      const totalScore = [...$questionScores]
+      .reduce((acc, cur) => acc + +cur.value , 0)
+      // console.log(totalScore);
+
+      if (totalScore !== 100) {
+        alert('배점 합산을 100점에 맞춰주세요.'); 
+        return;
+      } else {
+        alert(`새로운 문제가 생성되었습니다!`) 
+        alert(`참여 코드는 ${joinCode}입니다. 꼭 기억해 주세요!!!`);
+        location.assign('/solution.html');
+      };
     })
     .catch(err => console.error(err));
 
