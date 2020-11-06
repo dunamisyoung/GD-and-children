@@ -1,13 +1,13 @@
 // 문제 만들기 페이지 js
 
-const $questionContent = document.querySelector('.question-content');
+let $questionContents = document.querySelectorAll('.question-content');
 const $questionBox = document.querySelector('.question-box');
 const $plusBtn = document.querySelector('.plus-btn');
 const $saveBtn = document.querySelector('.save-btn');
 
-const $titleInput = document.querySelectorAll('.title-input');
-const $questionInputs = document.querySelectorAll('.question-input');
-const $questionTextareas = document.querySelectorAll('.question-textarea');
+let $titleInput = document.querySelector('.title-input');
+let $questionInputs = document.querySelectorAll('.question-input');
+let $questionTextareas = document.querySelectorAll('.question-textarea');
 
 
 const get = url => {
@@ -36,7 +36,7 @@ const post = (url, payload) => {
   
       xhr.onload = () => {
         if (xhr.status === 201) {
-          resolve(JSON.parse(xhr.respones));
+          resolve();
         } else {
           reject(new Error(xhr.status));
         }
@@ -44,10 +44,21 @@ const post = (url, payload) => {
   })
 }
 
-let num = 2;
+// 참여코드 생성
+const makeCode = () => {
+  let code = "";
+  let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-// 문제 추가 버튼
-$plusBtn.onclick = e => {
+  for (let i=0; i < 5; i++ )
+  code += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return code;
+  };
+
+  let num = 2;
+  
+  // 문제 추가 버튼 클릭 이벤트
+  $plusBtn.onclick = e => {
   $questionBox.innerHTML += `
   <div class="question-content">
     <div class="question-line">
@@ -94,9 +105,14 @@ $plusBtn.onclick = e => {
     </div>
   </div>`
 
+  $titleInput = document.querySelector('.title-input');
+  $questionInputs = document.querySelectorAll('.question-input');
+  $questionTextareas = document.querySelectorAll('.question-textarea');
+  $questionContents = document.querySelectorAll('.question-content');
   num++;
 }
 
+// 저장 버튼 클릭 이벤트
 $saveBtn.onclick = e => {
   
   // 생성 시 빈칸 확인
@@ -106,63 +122,63 @@ $saveBtn.onclick = e => {
     return;
   };
 
-  // 라이브객체 -> 배열로 만들어야 함
   [...$questionInputs].forEach(question => {
-    if ($questionInputs.value.trim() === '') {
+    // 라이브객체 -> 배열로 만들어야 함
+    if (question.value.trim() === '') {
       alert('빈 칸을 확인해 주세요');
       question.focus();
       return; 
     }
   });
+
   [...$questionTextareas].forEach(questionText => {
-    if ($questionTextareas.value.trim() === '') {
+    if (questionText.value.trim() === '') {
       alert('빈 칸을 확인해 주세요');
       questionText.focus();
       return; 
     }
   })
 
-  get('/question')
+  let joinCode = makeCode();
+
+  get(`/question`)
   .then(questions =>{
-      // 참여코드 생성
-      function makeid() {
-        var text = "";
-        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    // 참여 코드 중복 확인
+    while (questions.find(question => question.id === joinCode)) {
+      joinCode = makeCode();
+    }
 
-        for( var i=0; i < 5; i++ )
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
+    // 새로운 퀴즈(페이로드) 생성
+    let newQuiz = {};
 
-        return text;
-      };
+    newQuiz['id'] = joinCode;
+    newQuiz['title'] = $titleInput.value;
+    
+    [...$questionContents].forEach((_, i) => {
+      newQuiz[`Q${i + 1}`] = {};
 
-      // 참여코드 중복 확인
+      const $questionTitle = document.getElementById(`questionTitle-${i + 1}`);
+      const $questionScore = document.getElementById(`questionScore-${i + 1}`);
+      const $questionAnswer = document.getElementById(`questionAnswer-${i + 1}`);
+      const $questionSolution = document.getElementById(`questionSolution-${i + 1}`);
 
-      // 페이로드 생성
+      
+      newQuiz[`Q${i + 1}`].id = i + 1;
+      newQuiz[`Q${i + 1}`].question = $questionTitle.value;
+      newQuiz[`Q${i + 1}`].answer = $questionAnswer.value;
+      newQuiz[`Q${i + 1}`].score = $questionScore.value;
+      newQuiz[`Q${i + 1}`].solution = $questionSolution.value;
+    });
 
-    const test = [
-      {
-        id: "1",
-        question: "아디다스",
-        answer: "HTML",
-        score: "30",
-        solution: "HTML이 웹페이지 뼈대를 완성합니다."
-      },
-      {
-        id: "2",
-        question: "아디다스?",
-        answer: "CSS",
-        score: "50",
-        solution: "CSS가 웹페이지 디자인을 완성합니다."
-      },
-      {
-        title: "패스트캠퍼스 문제",
-        code: "QA123"
-      }
-    ];
+    alert('새로운 문제가 생성되었습니다!');
 
-    post('/question', test)
-    .then(question => console.log(question))
+    post('/question', newQuiz)
+    .then(() =>{
+      location.assign('/solution.html');
+    })
     .catch(err => console.error(err));
+
+
   }).catch(err => console.error(err));
 }
 
