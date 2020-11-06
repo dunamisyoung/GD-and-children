@@ -54,7 +54,7 @@ $joinForm.onsubmit = e => {
   e.preventDefault();
   get('/users')
     .then(users => {
-      if (!$inputUserId.value) {
+      if (!$inputUserId.value.trim()) {
         alert('아이디를 입력하세요');
         $inputUserId.focus();
         return;
@@ -66,15 +66,15 @@ $joinForm.onsubmit = e => {
         alert('비밀번호를 4자리 이상 입력해주세요');
         $inputUserPw.focus();
         return;
-      } else if (!$inputUserPw.value) {
+      } else if (!$inputUserPw.value.trim()) {
         alert('비밀번호를 입력하세요');
         $inputUserPw.focus();
         return;
-      } else if (!$inputUserPwConfirm.value) {
+      } else if (!$inputUserPwConfirm.value.trim()) {
         alert('비밀번호를 입력하세요');
         $inputUserPwConfirm.focus();
         return;
-      } else if (!$inputUserName.value) {
+      } else if (!$inputUserName.value.trim()) {
         alert('이름을 입력하세요');
         $inputUserName.focus();
         return;
