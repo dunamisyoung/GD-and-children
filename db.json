@@ -17,48 +17,7 @@
       "pw": "aaa123",
       "name": "테스트3",
       "position": "student"
-    },
-    [
-      {
-        "id": "1",
-        "question": "아디다스",
-        "answer": "HTML",
-        "score": "30",
-        "solution": "HTML이 웹페이지 뼈대를 완성합니다."
-      },
-      {
-        "id": "2",
-        "question": "아디다스?",
-        "answer": "CSS",
-        "score": "",
-        "solution": "CSS가 웹페이지 디자인을 완성합니다."
-      },
-      {
-        "title": "패스트캠퍼스 문제",
-        "code": "QA123"
-      }
-    ],
-    [
-      {
-        "id": "1",
-        "question": "아디다스",
-        "answer": "HTML",
-        "score": "30",
-        "solution": "HTML이 웹페이지 뼈대를 완성합니다."
-      },
-      {
-        "id": "2",
-        "question": "아디다스?",
-        "answer": "CSS",
-        "score": "",
-        "solution": "CSS가 웹페이지 디자인을 완성합니다."
-      },
-      {
-        "title": "패스트캠퍼스 문제",
-        "code": "QA123"
-      }
-    ]
-    
+    }
   ],
   "login": {},
   "question": [
