@@ -3,18 +3,21 @@
   height: 100vh;
   background: url(../img/login-background.png) no-repeat center / cover;
 }
+
 .content-box {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 .title {
   padding: 20px 0 50px;
   text-align: center;
   font-size: 4rem;
   color: #fff;
 }
+
 .link-input {
   display: block;
   margin-bottom: 20px;
@@ -29,27 +32,42 @@
   font-size: 1.5rem;
   color: #fff;
 }
+
 .link-input::placeholder {
   text-align: center;
   color: #fff;
 }
+
 .create-question {
   padding-top: 90px;
   text-align: center;
 }
-.create-question > a {
+
+.create-question>a {
   padding: 10px 20px;
   font-size: 1.3rem;
   font-weight: 900;
   border: 1px solid #fff;
   color: #fff;
 }
-.create-question > p {
+
+.create-question>p {
   margin-bottom: 30px;
   font-size: 1.3rem;
   color: #fff;
 }
-.create-question > a:hover {
+
+.create-question>a:hover {
   border: 1px solid #f23463;
   color: #f23463;
+}
+
+.logout-btn {
+  margin: 30px 0 0 30px;
+  padding: 10px 20px;
+  font-size: 1.3rem;
+  font-weight: 900;
+  border: 1px solid #f23463;
+  color: #f23463;
+  background-color: transparent;
 }

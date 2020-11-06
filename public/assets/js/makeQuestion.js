@@ -1,13 +1,20 @@
 // 문제 만들기 페이지 js
+window.onload = e => {
+  if(!sessionStorage.getItem('login')){
+    alert('로그인이 필요합니다');
+    location.assign('/')
+  }
+}
 
-const $questionContent = document.querySelector('.question-content');
+let $questionContents = document.querySelectorAll('.question-content');
 const $questionBox = document.querySelector('.question-box');
 const $plusBtn = document.querySelector('.plus-btn');
 const $saveBtn = document.querySelector('.save-btn');
 
-const $titleInput = document.querySelectorAll('.title-input');
-const $questionInputs = document.querySelectorAll('.question-input');
-const $questionTextareas = document.querySelectorAll('.question-textarea');
+let $titleInput = document.querySelector('.title-input');
+let $questionInputs = document.querySelectorAll('.question-input');
+let $questionTextareas = document.querySelectorAll('.question-textarea');
+let $questionScores = document.querySelectorAll('.question-score');
 
 
 const get = url => {
@@ -36,7 +43,7 @@ const post = (url, payload) => {
   
       xhr.onload = () => {
         if (xhr.status === 201) {
-          resolve(JSON.parse(xhr.respones));
+          resolve();
         } else {
           reject(new Error(xhr.status));
         }
@@ -44,10 +51,21 @@ const post = (url, payload) => {
   })
 }
 
-let num = 2;
+// 참여코드 생성
+const makeCode = () => {
+  let code = "";
+  let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-// 문제 추가 버튼
-$plusBtn.onclick = e => {
+  for (let i=0; i < 5; i++ )
+  code += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return code;
+  };
+
+  let num = 2;
+  
+  // 문제 추가 버튼 클릭 이벤트
+  $plusBtn.onclick = e => {
   $questionBox.innerHTML += `
   <div class="question-content">
     <div class="question-line">
@@ -66,7 +84,7 @@ $plusBtn.onclick = e => {
       <input
         type="number"
         id="questionScore-${num}"
-        class="question-input"
+        class="question-input question-score"
         autocomplete="off"
       />
     </div>
@@ -94,9 +112,15 @@ $plusBtn.onclick = e => {
     </div>
   </div>`
 
+  $titleInput = document.querySelector('.title-input');
+  $questionInputs = document.querySelectorAll('.question-input');
+  $questionTextareas = document.querySelectorAll('.question-textarea');
+  $questionContents = document.querySelectorAll('.question-content');
+  $questionScores = document.querySelectorAll('.question-score');
   num++;
 }
 
+// 저장 버튼 클릭 이벤트
 $saveBtn.onclick = e => {
   
   // 생성 시 빈칸 확인
@@ -106,63 +130,75 @@ $saveBtn.onclick = e => {
     return;
   };
 
-  // 라이브객체 -> 배열로 만들어야 함
   [...$questionInputs].forEach(question => {
-    if ($questionInputs.value.trim() === '') {
+    // 라이브객체 -> 배열로 만들어야 함
+    if (question.value.trim() === '') {
       alert('빈 칸을 확인해 주세요');
       question.focus();
       return; 
     }
   });
+
   [...$questionTextareas].forEach(questionText => {
-    if ($questionTextareas.value.trim() === '') {
+    if (questionText.value.trim() === '') {
       alert('빈 칸을 확인해 주세요');
       questionText.focus();
       return; 
     }
   })
 
-  get('/question')
+  let joinCode = makeCode();
+
+  get(`/question`)
   .then(questions =>{
-      // 참여코드 생성
-      function makeid() {
-        var text = "";
-        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    // 참여 코드 중복 확인
+    while (questions.find(question => question.id === joinCode)) {
+      joinCode = makeCode();
+    }
 
-        for( var i=0; i < 5; i++ )
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
+    // 새로운 퀴즈(페이로드) 생성
+    let newQuiz = {};
 
-        return text;
+    newQuiz['id'] = joinCode;
+    newQuiz['title'] = $titleInput.value;
+    
+    [...$questionContents].forEach((_, i) => {
+      newQuiz[`Q${i + 1}`] = {};
+
+      const $questionTitle = document.getElementById(`questionTitle-${i + 1}`);
+      const $questionScore = document.getElementById(`questionScore-${i + 1}`);
+      const $questionAnswer = document.getElementById(`questionAnswer-${i + 1}`);
+      const $questionSolution = document.getElementById(`questionSolution-${i + 1}`);
+      
+      newQuiz[`Q${i + 1}`].id = i + 1;
+      newQuiz[`Q${i + 1}`].question = $questionTitle.value;
+      newQuiz[`Q${i + 1}`].answer = $questionAnswer.value;
+      newQuiz[`Q${i + 1}`].score = $questionScore.value;
+      newQuiz[`Q${i + 1}`].solution = $questionSolution.value;
+      
+    });
+
+    
+
+    post('/question', newQuiz)
+    .then(() =>{
+
+      // 점수 계산
+      const totalScore = [...$questionScores]
+      .reduce((acc, cur) => acc + +cur.value , 0)
+      // console.log(totalScore);
+
+      if (totalScore !== 100) {
+        alert('배점 합산을 100점에 맞춰주세요.'); 
+        return;
+      } else {
+        alert(`새로운 문제가 생성되었습니다!`) 
+        alert(`참여 코드는 ${joinCode}입니다. 꼭 기억해 주세요!!!`);
+        location.assign('/solution.html');
       };
-
-      // 참여코드 중복 확인
-
-      // 페이로드 생성
-
-    const test = [
-      {
-        id: "1",
-        question: "아디다스",
-        answer: "HTML",
-        score: "30",
-        solution: "HTML이 웹페이지 뼈대를 완성합니다."
-      },
-      {
-        id: "2",
-        question: "아디다스?",
-        answer: "CSS",
-        score: "50",
-        solution: "CSS가 웹페이지 디자인을 완성합니다."
-      },
-      {
-        title: "패스트캠퍼스 문제",
-        code: "QA123"
-      }
-    ];
-
-    post('/question', test)
-    .then(question => console.log(question))
+    })
     .catch(err => console.error(err));
+
   }).catch(err => console.error(err));
 }
 
