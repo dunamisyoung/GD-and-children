@@ -1,6 +1,6 @@
 // 시험 결과 페이지 js
 
-const score = 95;
+const score = sessionStorage.getItem('examScore');
 
 const $score = document.querySelector('.score');
 const $solutionBtn = document.querySelector('.solution-btn');
@@ -27,4 +27,4 @@ const get = url => {
 get(`/question`)
 .then(() => {
   $score.textContent = `${score}점`;
-}).catch();
+}).catch(err => console.error(err));

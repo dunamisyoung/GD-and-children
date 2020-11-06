@@ -10,7 +10,7 @@ window.onload = e => {
 const $questionBox = document.querySelector('.question-box');
 const $title = document.querySelector('.title');
 
-let joinCode = 'QA332';
+let joinCode = sessionStorage.getItem('joinCode');
 
 // get 함수
 const get = url => {

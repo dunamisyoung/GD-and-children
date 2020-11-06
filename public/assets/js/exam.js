@@ -1,4 +1,11 @@
 // State
+window.onload = e => {
+  if(!sessionStorage.getItem('login')){
+    alert('로그인이 필요합니다');
+    location.assign('/')
+  }
+}
+
 const $questionBox = document.querySelector('.question-box');
 const $title = document.querySelector('.title');
 const $saveBtn = document.querySelector('.save-btn');
@@ -6,7 +13,7 @@ const $solvedQuestion = document.querySelector('.solved-question');
 const $questionForm = document.querySelector('.question-form');
 let $questionInputs = document.querySelectorAll('.question-input');
 
-const joinCode = 'QA332';
+const joinCode = sessionStorage.getItem('joinCode');
 
 const get = (url) => {
   return new Promise((resolve, reject) => {
@@ -74,7 +81,7 @@ get(`/question/${joinCode}`).then((question) => {
           score += +question[`Q${i}`]['score'];
         }
       }
-      sessionStorage.setItem('joinCode', score);
+      sessionStorage.setItem('examScore', score);
       alert('제출완료');
       location.assign('result.html');
     } else {

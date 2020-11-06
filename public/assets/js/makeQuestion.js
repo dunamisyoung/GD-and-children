@@ -194,6 +194,7 @@ $saveBtn.onclick = e => {
       } else {
         alert(`새로운 문제가 생성되었습니다!`) 
         alert(`참여 코드는 ${joinCode}입니다. 꼭 기억해 주세요!!!`);
+        sessionStorage.setItem('joinCode', joinCode);
         location.assign('/solution.html');
       };
     })
