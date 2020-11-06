@@ -41,14 +41,17 @@ $loginForm.onsubmit = (e) => {
   // 이벤트 발생시에 get함수 호출
   get('/users')
     .then((users) => {
-      // console.log(users);
       const checkUser = users.find((user) => {
         return user.id === $userId.value && user.pw === $userPw.value;
       });
+   
       if (checkUser) {
+
+        // 세션 스토리지에 JSON 형식으로 login: {} 형태로 저장
+        sessionStorage.setItem('login', JSON.stringify({id: checkUser.id, position: checkUser.position, name: checkUser.name}));
         location.assign('link.html');
       } else {
-        alert('아이디와 비밀번호를 입력해주세요');
+        alert('등록되지 않은 회원입니다');
       }
     })
     .catch();
