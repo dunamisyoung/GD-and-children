@@ -1,4 +1,3 @@
-// 로그인 페이지 js
 //Status
 const $loginForm = document.getElementById('login-form');
 const $loginBtn = document.querySelector('.login-btn');
@@ -42,7 +41,6 @@ $loginForm.onsubmit = (e) => {
   // 이벤트 발생시에 get함수 호출
   get('/users')
     .then((users) => {
-
       const checkUser = users.find((user) => {
         return user.id === $userId.value && user.pw === $userPw.value;
       });
