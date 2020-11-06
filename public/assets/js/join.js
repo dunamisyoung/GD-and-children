@@ -54,12 +54,17 @@ $joinForm.onsubmit = e => {
   e.preventDefault();
   get('/users')
     .then(users => {
+      // 아이디 유효성 검사 정규표현식 변수
+      let idReg = /^[A-Za-z0-9+]{4,12}$/; 
+      // 이름 유효성 검사 정규표현식 변수
+      let nameReg = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]{1,5}$/;
+
       if (!$inputUserId.value.trim()) {
         alert('아이디를 입력하세요');
         $inputUserId.focus();
         return;
-      } else if ($inputUserId.value.length < 4) {
-        alert('아이디를 4자리 이상 입력해주세요');
+      } else if ($inputUserId.value.length < 4 || !idReg.test($inputUserId.value)) {
+        alert('아이디는 4~12 자리 영문자 또는 숫자이어야 합니다')
         $inputUserId.focus();
         return;
       } else if($inputUserPw.value.length < 4) {
@@ -74,15 +79,15 @@ $joinForm.onsubmit = e => {
         alert('비밀번호를 입력하세요');
         $inputUserPwConfirm.focus();
         return;
-      } else if (!$inputUserName.value.trim()) {
-        alert('이름을 입력하세요');
+      } else if (!$inputUserName.value.trim() || !nameReg.test($inputUserName.value)) {
+        alert('이름은 1~5 자리 한글로 입력해야 합니다');
         $inputUserName.focus();
         return;
       } else if ($inputUserPw.value !== $inputUserPwConfirm.value) {
         alert('비밀번호가 일치하지 않습니다');
         $inputUserPwConfirm.focus();
         return;
-      }
+      } 
 
       // ID 중복확인을 위한 변수
       const checkIdValid = users.find(user => user.id === $inputUserId.value)
