@@ -22,14 +22,14 @@
   <body>
     <div class="wrapper">
       <section class="content-box">
-        <h1 class="title">참여링크</h1>
-        <form>
-          <label for="link" class="a11y-hidden">참여링크 (엔터 클릭)</label>
+        <h1 class="title">참여코드</h1>
+        <form id="linkForm">
+          <label for="link" class="a11y-hidden">참여코드 (엔터 클릭)</label>
           <input
             type="text"
-            id="link"
+            id="linkInput"
             class="link-input"
-            placeholder="참여링크를 입력 후 Enter를 눌러주세요."
+            placeholder="참여코드를 입력 후 Enter를 눌러주세요."
             autocomplete="off"
           />
         </form>
@@ -38,6 +38,7 @@
           <a href="makeQuestion.html">문제 만들기</a>
         </div>
       </section>
+      <button id="logOut" class="logout-btn">log-out</button>
     </div>
   </body>
 </html>
