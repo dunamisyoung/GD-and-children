@@ -25,6 +25,12 @@
         <h1 class="title"><span>G</span></h1>
         <form>
           <div class="question-box">
+            <input
+                  type="text"
+                  class="question-input title-input" 
+                  autocomplete="off"
+                  placeholder="제목을 입력해주세요"
+                />
             <div class="question-content">
               <div class="question-line">
                 <label for="questionTitle-1" class="question-label">Q-1</label>
@@ -42,7 +48,7 @@
                 <input
                   type="number"
                   id="questionScore-1"
-                  class="question-input"
+                  class="question-input question-score"
                   autocomplete="off"
                 />
               </div>
@@ -71,8 +77,8 @@
             </div>
           </div>
 
-          <button class="plus-btn">+</button>
-          <button class="save-btn">Save</button>
+          <button class="plus-btn" type="button">+</button>
+          <button class="save-btn" type="button">Save</button>
         </form>
       </section>
     </div>
