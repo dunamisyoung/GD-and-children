@@ -1,7 +1,7 @@
 // 링크 입력 페이지 js
 
 // 페이지 로딩 시 , 로그인이 되어있지 않다면 login.html로 이동
-window.onload = e => {
+window.onDOMContentLoaded = e => {
   if(!sessionStorage.getItem('login')){
     alert('로그인이 필요합니다');
     location.assign('/')

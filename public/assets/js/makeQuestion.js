@@ -1,4 +1,10 @@
 // 문제 만들기 페이지 js
+window.onload = e => {
+  if(!sessionStorage.getItem('login')){
+    alert('로그인이 필요합니다');
+    location.assign('/')
+  }
+}
 
 let $questionContents = document.querySelectorAll('.question-content');
 const $questionBox = document.querySelector('.question-box');
@@ -192,7 +198,6 @@ $saveBtn.onclick = e => {
       };
     })
     .catch(err => console.error(err));
-
 
   }).catch(err => console.error(err));
 }

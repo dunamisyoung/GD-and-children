@@ -1,6 +1,11 @@
 // 회원가입 페이지 js
 
-// state
+window.onload = e => {
+  if(!sessionStorage.getItem('login')){
+    alert('로그인이 필요합니다');
+    location.assign('/')
+  }
+}
 
 // Doms
 $joinForm = document.getElementById('joinForm');

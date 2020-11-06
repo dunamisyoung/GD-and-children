@@ -1,4 +1,10 @@
 // 해설 보기 페이지 js
+window.onload = e => {
+  if(!sessionStorage.getItem('login')){
+    alert('로그인이 필요합니다');
+    location.assign('/')
+  }
+}
 
 // Doms
 const $questionBox = document.querySelector('.question-box');
