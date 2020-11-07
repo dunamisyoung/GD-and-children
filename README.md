@@ -48,7 +48,7 @@
 1일 (2020.11.06 금요일)
 
 # 팀원
-- 김동찬
-- 석금용
-- 이영상
-- 이한슬
+- [김동찬](https://github.com/dongchan-K)
+- [석금용](https://github.com/geum-yong)
+- [이영상](https://github.com/dunamisyoung)
+- [이한슬](https://github.com/hanseul-lee)
