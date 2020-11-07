@@ -3,7 +3,7 @@
 > 패스트 캠퍼스 해커톤에서 진행한 프로젝트 사이트입니다.
 
 ![main](https://user-images.githubusercontent.com/69497936/98433282-f93e5980-2108-11eb-8cfd-06554caeb47b.jpg)
-
+![make](https://user-images.githubusercontent.com/69497936/98433690-9a7adf00-210c-11eb-9c9f-5cbcc224bebd.jpg)
 
 # 프로젝트 목표
 
