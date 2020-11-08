@@ -48,7 +48,7 @@
 1일 (2020.11.06 금요일)
 
 # 팀원
-- [김동찬](https://github.com/dongchan-K)
-- [석금용](https://github.com/geum-yong)
-- [이영상](https://github.com/dunamisyoung)
-- [이한슬](https://github.com/hanseul-lee)
+- [김동찬](https://github.com/dongchan-K) - 기획, Javascript 2,3,7 페이지
+- [석금용](https://github.com/geum-yong) - 기획, HTML/CSS 및 Javascript 전반적인 진행사항 QA 역할
+- [이영상](https://github.com/dunamisyoung) - 기획, Javascript 1,5 페이지
+- [이한슬](https://github.com/hanseul-lee) - 기획, Javascript 4,6 페이지, github 관리
